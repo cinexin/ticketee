@@ -43,3 +43,17 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# note we have three scenarios: "test", "development", "production"
+
+group :test, :development do
+	gem 'rspec-rails',"~>2.14"
+end
+
+# this is a navigator simulator, which is used for testing "if you press this link, you will be redirected to..."
+# among lots of other things
+group :test do
+	gem 'capybara', "2.2.1"
+end
+
+# note: to automatically require this gems, view the "config/application.rb" file (line 9)

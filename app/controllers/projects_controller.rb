@@ -20,6 +20,10 @@ class ProjectsController < ApplicationController
 			# this will redirect us to project_path(@project)
 			redirect_to @project
 		else
+			# we give an alert message to the user
+			flash[:alert] = "Project has not been created."
+			# when we "render" a page, we must supply the "name" of the "name.html.erb"
+			render "new"
 
 		end
 	end

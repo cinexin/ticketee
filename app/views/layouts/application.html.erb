@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Ticketee</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+	  <title>:: Ticketee ::</title>
+	  <!-- CURIOSITY: Any route prefixed with /assets is served by a gem called "Sprockets", commonly referred as the "Asset Pipeline" -->
+	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
-<%= yield %>
+	  <!-- The "Sprockets" gem indicates the javascript files to be preprocessed by a coffescript interpreter -->
+	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	  <%= csrf_meta_tags %>
+	</head>
 
-</body>
+	<body>
+
+		<!-- this is a good place to put the flash messages -->
+		<!-- this will render the flash[:notice] we set up in the projects_controller -->
+		<% flash.each do |key,value| %>
+			<div class="flash" id='<%=key%>'>
+				<%= value %>
+			</div>
+		<% end %>
+		
+		<%= yield %>
+
+	</body>
 </html>

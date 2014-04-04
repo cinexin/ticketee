@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>:: Ticketee ::</title>
+		<!-- in Ruby, the "||" operator means "if the preceding is null, then put this default value" -->
+	  <!--<title><%= @title || ":: Ticketee ::" %></title>-->
+	  <!-- we specified the "title" attribute with helpers...
+	  	see application_helper.rb and show.html.erb-->
+	  <title>
+		  <% if content_for? (:title) %>
+		  	 <%= yield (:title) %>
+		  <% else %>
+		  	::Ticketee::
+		  <% end %>
+	  </title>
 	  <!-- CURIOSITY: Any route prefixed with /assets is served by a gem called "Sprockets", commonly referred as the "Asset Pipeline" -->
 	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 

@@ -1,1 +1,8 @@
+
+<!-- this is the way we can specify a title for a page -->
+<!--<% @title = "TextMate 2 - Projects - Ticketee" %> -->
+
+<!-- but we can do it even better with "helpers"...
+	see the "application_helper.rb" file! -->
+<% title(@project.name, "Projects") %>
 <h2><%= @project.name %></h2>

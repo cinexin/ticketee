@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
 
+	before_action :set_project, only: [:show, :edit, :update, :destroy]
+
 	# the "index" action for the projects controller 
 	def index
 		@projects = Project.all
@@ -30,17 +32,20 @@ class ProjectsController < ApplicationController
 
 	# the "show" action for the projects
 	def show
-		@project = Project.find(params[:id])
+		# this line isn't necessary anymore (view "set_project" method at the end)
+		# @project = Project.find(params[:id])
 	end
 
 	# the "edit" action for the projects
 	def edit
-		@project = Project.find(params[:id])
+		# this line isn't necessary anymore (view "set_project" method at the end)
+		#@project = Project.find(params[:id])
 	end
 
 	# the "update" action for the projects
 	def update 
-		@project = Project.find(params[:id])
+		# this line isn't necessary anymore (view "set_project" method at the end)
+		#@project = Project.find(params[:id])
 
 		if @project.update(project_params)
 			flash[:notice] = "Project has been updated."
@@ -55,13 +60,23 @@ class ProjectsController < ApplicationController
 	
 	# method for deleting projects
 	def destroy
-		@project = Project.find(params[:id])
+		# this line isn't necessary anymore (view "set_project" method at the end)
+		# @project = Project.find(params[:id])
 		@project.destroy
 		flash[:notice] = "Project has been destroyed."
 		redirect_to projects_path
 	end
+
+	private
 	# this is what they call "strong parameters"
 	def project_params
 		params.require(:project).permit(:name, :description)
+	end
+
+	def set_project
+		@project = Project.find(params[:id])
+	rescue ActiveRecord::RecordNotFound
+		flash[:alert] = "The project you were looking for could not be found."
+		redirect_to projects_path
 	end
 end

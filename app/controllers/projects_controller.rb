@@ -32,6 +32,26 @@ class ProjectsController < ApplicationController
 	def show
 		@project = Project.find(params[:id])
 	end
+
+	# the "edit" action for the projects
+	def edit
+		@project = Project.find(params[:id])
+	end
+
+	# the "update" action for the projects
+	def update 
+		@project = Project.find(params[:id])
+
+		if @project.update(project_params)
+			flash[:notice] = "Project has been updated."
+		else
+			flash[:alert] = "Project has not been udpated."
+			redirect_to edit_project_path(@project)
+			return
+		end
+
+		redirect_to @project
+	end
 	
 	# this is what they call "strong parameters"
 	def project_params

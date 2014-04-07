@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
 	# the "index" action for the projects controller 
 	def index
-
+		@projects = Project.all
 	end
 
 	# the "new" action for the projects controller

@@ -54,6 +54,7 @@ end
 # among lots of other things
 group :test do
 	gem 'capybara', "2.2.1"
+	gem 'factory_girl_rails', '~>4.2.1'
 end
 
 # note: to automatically require this gems, view the "config/application.rb" file (line 9)

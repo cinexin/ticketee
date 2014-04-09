@@ -26,7 +26,10 @@ Ticketee::Application.routes.draw do
   # 6. DELETE /projects/:id => destroy
   # 7. GET /projects/:id/edit => edit
   # to review these routes execute this command in your console: "bin/rake routes"
-  resources :projects
+  resources :projects do
+    resources :tickets
+
+  end
   
 
 

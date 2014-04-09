@@ -1,0 +1,10 @@
+<div id="ticket">
+	<h2><%= @ticket.title %></h2>
+
+	<!-- what's that "simple_format" thing...?
+		this method converts the line breaks entered in the description
+		into <br> html tags so that the description renders in the page
+		the way it was intended to
+	-->
+	<%= simple_format(@ticket.description) %>
+</div>	

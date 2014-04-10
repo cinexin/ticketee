@@ -7,4 +7,5 @@
 		the way it was intended to
 	-->
 	<%= simple_format(@ticket.description) %>
+	<%= link_to "Edit ticket", edit_project_ticket_path(@project,@ticket) %>
 </div>	

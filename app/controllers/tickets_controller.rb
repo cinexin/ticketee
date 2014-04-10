@@ -28,6 +28,21 @@ class TicketsController < ApplicationController
 
 	end
 
+	# the edit action
+	def edit 
+	end
+
+	# the update action
+	def update
+
+		if (@ticket.update(ticket_params))
+			flash[:notice] = "Ticket has been updated."
+			redirect_to project_ticket_path(@project, @ticket)
+		else
+			flash[:alert] = "Ticket has not been updated."
+			render action: "edit"
+		end
+	end
 
 	private
 	# this method will being executed before every action

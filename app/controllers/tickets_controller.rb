@@ -44,6 +44,16 @@ class TicketsController < ApplicationController
 		end
 	end
 
+	# the destroy action
+	def destroy
+		@ticket.destroy
+		flash[:notice] = "Ticket has been deleted."
+
+		redirect_to @project
+	end
+
+
+
 	private
 	# this method will being executed before every action
 	def set_project

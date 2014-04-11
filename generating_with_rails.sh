@@ -26,3 +26,6 @@ $ bin/rake db:migrate
 $ bin/rake db:test:prepare
 # with large migrations, it's best to use the following command
 $ bin/rake db:schema:load
+
+$ bin/rails generate model user name:string email:string password_digest:string
+$ bin/rake db:migrate db:test:prepare

@@ -2,4 +2,5 @@
 (app_root_path)$ gem install capybara
 
 
-(app_root_path)$ bundle update
+(app_root_path)$ bin/bundle update
+

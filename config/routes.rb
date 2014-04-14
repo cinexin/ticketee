@@ -25,14 +25,19 @@ Ticketee::Application.routes.draw do
   # 5. PATCH/PUT /projects/:id => update
   # 6. DELETE /projects/:id => destroy
   # 7. GET /projects/:id/edit => edit
-  # to review these routes execute this command in your console: "bin/rake routes"
+  # to review these routes (and more you can configure further)
+  # execute this command in your console: "bin/rake routes"
   resources :projects do
     resources :tickets
-
   end
   
   resources :users
 
+  # note the format: Prefix + Verb + Uri pattern +", to:" + Controller#Action
+  # in this case, the prefix is inferred from the URL and is "signin"
+  get "/signin", to:"sessions#new"
+  # we need a "signin" with a post method
+  post "/signin", to: "sessions#create"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

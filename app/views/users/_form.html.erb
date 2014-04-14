@@ -1,0 +1,36 @@
+<%= form_for @user do |f| %>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from beign saved: </h2>
+			<ul>
+				<% @ticket.error.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<!-- username -->
+	<p>
+		<%= f.label :name, "Username" %><br>
+		<%= f.text_field :name %>
+	</p>
+	<!-- email -->
+	<p>
+		<%= f.label :email %><br>
+		<%= f.text_field :email %>
+	</p>
+	<!-- password -->
+	<p>
+		<%= f.label :password %><br>
+		<%= f.text_field :password %>
+	</p>
+	<!-- password confirmation -->
+	<p>
+		<!-- note the "password_field" type -->
+		<%= f.label :password_confirmation %><br>
+		<%= f.password_field :password_confirmation %>
+	</p>
+
+	<%= f.submit "Sign up" %>
+<% end %>

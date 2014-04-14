@@ -27,5 +27,11 @@ $ bin/rake db:test:prepare
 # with large migrations, it's best to use the following command
 $ bin/rake db:schema:load
 
+
+# this is the way we generate the user model to login, authenticate, security and so
 $ bin/rails generate model user name:string email:string password_digest:string
 $ bin/rake db:migrate db:test:prepare
+
+# we can generate the users controller with some actions too!
+# NOTE: be careful with this, because you can also generate stuff you don't want
+$ bin/rails generate controller users new create show

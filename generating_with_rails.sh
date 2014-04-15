@@ -35,3 +35,8 @@ $ bin/rake db:migrate db:test:prepare
 # we can generate the users controller with some actions too!
 # NOTE: be careful with this, because you can also generate stuff you don't want
 $ bin/rails generate controller users new create show
+
+# this is the way we can alter a table in the database
+$ bin/rails generate migration add_user_id_to_tickets user:references
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare

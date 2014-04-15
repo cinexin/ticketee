@@ -1,6 +1,7 @@
 class Ticket < ActiveRecord::Base
 	# relationships
   	belongs_to :project
+  	belongs_to :user
 
   	# validations
   	validates :title, presence: true

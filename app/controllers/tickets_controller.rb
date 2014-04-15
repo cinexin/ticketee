@@ -5,6 +5,9 @@ class TicketsController < ApplicationController
 	# 		and then the ticket
 	before_action :set_project
 	before_action :set_ticket, only:[:show,:edit,:update,:destroy]
+	# note that we can say "only" in these actions or "except" these actions
+	# we'll need the "require_signin!" method later, so the best place to put it is in the "application_controller.rb" file
+	before_action :require_signin!, except: [:show, :index]
 
 	# new action
 	def new
@@ -14,6 +17,7 @@ class TicketsController < ApplicationController
 	# create action
 	def create
 		@ticket = @project.tickets.build(ticket_params)
+		@ticket.user = current_user
 		if @ticket.save
 			flash[:notice] = "Ticket has been created."
 			redirect_to [@project, @ticket]

@@ -15,6 +15,8 @@ feature "Deleting tickets" do
 		ticket = FactoryGirl.create(:ticket, project: project)
 		ticket.update(user: user)
 		ticket
+		# you can sum up the above statements in just one...
+		# ticket = FactoryGirl.create(:ticket, project: project, user: user)
 	}
 
 	before do

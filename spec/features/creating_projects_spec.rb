@@ -4,6 +4,8 @@ feature 'Creating Projects'  do
 
 	# we define a 'before' action to avoid repeating code...
 	before do
+		# see the user_factory.rb to see how "admin_user" it's defined
+		sign_in_as!(FactoryGirl.create(:admin_user))
 		visit "/"
 		click_link 'New Project'		
 	end

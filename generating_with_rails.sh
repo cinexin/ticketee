@@ -40,3 +40,9 @@ $ bin/rails generate controller users new create show
 $ bin/rails generate migration add_user_id_to_tickets user:references
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare
+
+# another example of adding a field to a table in the database
+$ bin/rails generate migration add_admin_to_users admin:boolean
+# ...and as usual, migrate de development and test databases...
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare

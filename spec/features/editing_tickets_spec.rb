@@ -34,7 +34,7 @@ feature "Editing tickets" do
 		click_button "Save"
 
 		expect(page).to have_content "Ticket has been updated."
-		within ("#ticket h2") do
+		within("#ticket h2") do
 			expect(page).to have_content "Make it really shiny!"
 		end
 		expect(page).to_not have_content ticket.title

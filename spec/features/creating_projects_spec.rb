@@ -23,7 +23,7 @@ feature 'Creating Projects'  do
 		fill_in "Description", with: "A text-editor for OS X"
 		
 		click_button "Save"
-		expect(page).to have_content ("Project has been created.")
+		expect(page).to have_content("Project has been created.")
 
 		project = Project.where(name: "TextMate 2").first
 
@@ -41,8 +41,8 @@ feature 'Creating Projects'  do
 
 
 		click_button "Save"
-		expect(page).to have_content ("Project has not been created.")
-		expect(page).to have_content ("Name can't be blank")
+		expect(page).to have_content("Project has not been created.")
+		expect(page).to have_content("Name can't be blank")
 	end
 
 

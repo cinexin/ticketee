@@ -1,5 +1,7 @@
 Ticketee::Application.routes.draw do
-
+  # the line below is absolutely useless...see "generating_with_rails.sh" line 59 for details
+  # get "users/index"
+  
   # this way we define the root path ("/") for our project
   root "projects#index"
 
@@ -38,6 +40,22 @@ Ticketee::Application.routes.draw do
   get "/signin", to:"sessions#new"
   # we need a "signin" with a post method
   post "/signin", to: "sessions#create"
+
+  # see how we can use namespaces...
+  # the command below will generate us theses routes:
+  # admin_users GET    /admin/users(.:format)       admin/users#index
+  #             POST   /admin/users(.:format)       admin/users#create
+  # new_admin_user GET    /admin/users/new(.:format)    admin/users#new
+  # edit_admin_user GET    /admin/users/:id/edit(.:format)    admin/users#edit
+  # admin_user GET    /admin/users/:id(.:format)    admin/users#show
+  #                  PATCH  /admin/users/:id(.:format)      admin/users#update
+  #                  PUT    /admin/users/:id(.:format)      admin/users#update
+  #                  DELETE /admin/users/:id(.:format)      admin/users#destroy
+
+  namespace :admin do
+    resources :users
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

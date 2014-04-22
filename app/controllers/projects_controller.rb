@@ -81,14 +81,6 @@ class ProjectsController < ApplicationController
 		redirect_to projects_path
 	end
 	
-	# method for checking if the user is an admin
-	def authorize_admin!
-	  # see the "application_controller.rb" file to find out what's this "require_signin!" method about... 
-	  require_signin!
-	  unless current_user.admin?
-			flash[:alert] = "You must be an admin to do that."
-			redirect_to root_path
-		end
-	end
+
 	
 end

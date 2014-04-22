@@ -46,3 +46,14 @@ $ bin/rails generate migration add_admin_to_users admin:boolean
 # ...and as usual, migrate de development and test databases...
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare
+
+# we generate a "namespaced controller" to add the funcionality 
+# to grant admin privileges to users
+# the controller will be "Admin::UsersController" at app/controllers/admin/users_controller.rb
+#  the views of this controller will be under app/views/admin/users
+# and the spec will be at spec/controllers/admin/users_controller_spec.rb 
+# additionally, note that this controller will contain an index action and 
+# will generate an "index.html.erb" file under app/views/admin/users/
+# finally, this will generate us a BAD entry (better said, useless) in config/routes.rb
+# get "users/index"...we can remove it
+$ bin/rails generate controller admin/users index

@@ -23,9 +23,23 @@
 	<body>
 
 		<nav>
-		<%= link_to "Sign up", new_user_path %>
-		<!-- View the "config/routes.rb" file -->
-		<%= link_to "Sign in", signin_path %>
+			<!-- we check if we're signed in or not...-->
+			<!-- see the "app/controllers/application_controller.rb" file for details 
+				of the "current_user" method
+			-->
+			<% if current_user %>
+			    Signed in as <%= current_user.email %>
+				<!-- link to admins space...-->
+				<!-- se the app/helpers/application_helper.rb for details of "admins_only" method -->
+				<% admins_only do %>
+					<!-- se the "routes.rb" file for viewing the definition of "admin_root_path" -->
+					<%= link_to "Admin", admin_root_path %>
+				<% end %>
+			<% else %>
+				<%= link_to "Sign up", new_user_path %>
+				<!-- View the "config/routes.rb" file -->
+				<%= link_to "Sign in", signin_path %>
+			<% end %>
 		</nav>
 		<!-- this is a good place to put the flash messages -->
 		<!-- this will render the flash[:notice] we set up in the projects_controller -->

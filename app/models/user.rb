@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-
+  # see the "spec/models/user_spec.rb" for details
+  validates :email, presence: true
+  
 	has_secure_password
 	
 	# we decided to override the default "to_s" method 

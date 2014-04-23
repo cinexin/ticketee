@@ -29,7 +29,7 @@ feature "Creating Tickets" do
 		expect(page).to have_content "Ticket has been created."
 
 		within "#ticket #author" do
-			expect(page).to have_content("Created by sample@example.com")
+			expect(page).to have_content("Created by #{@email}")
 		end	
 	end
 

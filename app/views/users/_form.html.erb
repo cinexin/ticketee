@@ -3,7 +3,7 @@
 		<div id="error_explanation">
 			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from beign saved: </h2>
 			<ul>
-				<% @ticket.error.full_messages.each do |msg| %>
+				<% @user.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
 				<% end %>
 			</ul>

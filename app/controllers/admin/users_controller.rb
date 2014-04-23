@@ -25,6 +25,7 @@ class Admin::UsersController < Admin::BaseController
 
   private 
   def user_params
-  	params.require(:user).permit(:name,:password, :password_confirmation)
+    # note that we need the "admin" parameter to be "setteable"
+  	params.require(:user).permit(:name,:email,:password, :password_confirmation, :admin)
   end
 end

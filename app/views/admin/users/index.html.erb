@@ -4,7 +4,12 @@
 <ul id="users">
 	<% @users.each do |user| %>
 		<li>
-			<%= link_to user.email, admin_user_path(user) %>
+			<!-- ok, note that Rails will call "user.to_s"
+				to render the "user" object, so we'll override
+				the default method "to_s" to render it the way
+				we want.
+				See "app/models/user.rb" for details -->
+			<%= link_to user, admin_user_path(user) %>
 		</li>
 	<% end %>
 </ul>

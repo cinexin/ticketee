@@ -6,6 +6,7 @@ feature "Creating Tickets" do
 		project = FactoryGirl.create(:project, name: "Internet Explorer")
 		user = FactoryGirl.create(:user)
 		define_permission!(user,:view, project)
+		define_permission!(user, "create tickets", project)
 		@email = user.email
 		sign_in_as!(user)
 		visit "/"

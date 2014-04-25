@@ -29,7 +29,7 @@ class Project < ActiveRecord::Base
 
 	scope :for,->(user) do
 		# ternary statements in Ruby...(fuck yeah)
-		# if a ternary statement is longer than 80 statements, please, don't use it
+		# if a ternary statement is longer than 80 statements, don't use it
 		user.admin? ? Project.all : Project.viewable_by(user)
 	end
 end

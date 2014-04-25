@@ -57,4 +57,8 @@ group :test do
 	gem 'factory_girl_rails', '~>4.2.1'
 end
 
+# the "cancan" gem brings us a set of helpers
+# to manage permissions
+gem 'cancan', '~>1.6.10'
+
 # note: to automatically require this gems, view the "config/application.rb" file (line 9)

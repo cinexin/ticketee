@@ -3,12 +3,15 @@ class TicketsController < ApplicationController
 	# before statements...
 	# NOTE: the sequence is important, because we want to retrieve first the project
 	# 		and then the ticket
+	before_action :require_signin!
 	before_action :set_project
 	before_action :set_ticket, only:[:show,:edit,:update,:destroy]
 	# note that we can say "only" in these actions or "except" these actions
 	# we'll need the "require_signin!" method later, so the best place to put it is in the "application_controller.rb" file
-	before_action :require_signin!
-
+	
+	# we need to check if the user has permission for creating a ticket
+	# see the "private" part of this class to find out the implementation
+	before_action :authorize_create!, only: [:new, :create]
 	# new action
 	def new
 		@ticket = Ticket.new(project_id: @project.id)
@@ -83,5 +86,16 @@ class TicketsController < ApplicationController
 	# strong params, always strong params....
 	def ticket_params
 		params.require(:ticket).permit(:title, :description)
+	end
+
+	def authorize_create!
+		# "cannot?" method...ok, we need a gem called "CanCan"
+		# see the Gemfile and search for "cancan"
+		# then, if you want to find more details about permission management
+		# see the "app/model/ability.rb" file
+		if !current_user.admin? && cannot?("create tickets".to_sym,@project)
+			flash[:alert] = "You cannot create tickets on this project."
+			redirect_to @project
+		end
 	end
 end

@@ -57,3 +57,8 @@ $ bin/rake db:test:prepare
 # finally, this will generate us a BAD entry (better said, useless) in config/routes.rb
 # get "users/index"...we can remove it
 $ bin/rails generate controller admin/users index
+
+# the "permission" model object generation...
+$ bin/rails generate model permission user_id:integer thing_id:integer thing_type:string action:string
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare

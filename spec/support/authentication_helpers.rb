@@ -30,3 +30,19 @@ end
 RSpec.configure do |c|
   c.include AuthHelpers, type: :controller
 end
+
+# module for "define_permission!" method
+module AuthorizationHelpers
+
+	def define_permission!(user, action, thing)
+
+		# the "permission" model is used for tracking wich users can do
+		# wich action on a certain thing
+		# view "generating_with_rails.sh" to view how we define this peculiar model object
+		Permission.create(user: user, action: action, thing: thing)
+	end
+end
+
+RSpec.configure do |c|
+	c.include AuthorizationHelpers
+end

@@ -1,7 +1,16 @@
 class ProjectsController < ApplicationController
+	
+	# IMPORTANT NOTE: the "before_action" methods run
+	# in the order they are written
+	# for instante, before "show" action the controller
+	# will execute the "require_signin!" method and then the "set_project" method
 
-	before_action :set_project, only: [:show, :edit, :update, :destroy]
+	# view the "application_controller.rb" file for details about these methods
 	before_action :authorize_admin!, except: [:index, :show]
+	before_action :require_signin!, only: [:show]
+	# view the private part of this class to find out what the "before_action" method does
+	before_action :set_project, only: [:show, :edit, :update, :destroy]
+	
 
 	# the "index" action for the projects controller 
 	def index
@@ -75,7 +84,15 @@ class ProjectsController < ApplicationController
 	end
 
 	def set_project
-		@project = Project.find(params[:id])
+		# @project = Project.find(params[:id])
+		# view the project model to find out the implementation of "viewable_by" method
+		# note the cool way we can assign conditionally a value in Ruby
+		@project = if current_user.admin?
+			Project.find(params[:id])
+		else
+			Project.viewable_by(current_user).find(params[:id])
+		end
+		 
 	rescue ActiveRecord::RecordNotFound
 		flash[:alert] = "The project you were looking for could not be found."
 		redirect_to projects_path

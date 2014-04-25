@@ -15,4 +15,15 @@ class Project < ActiveRecord::Base
 	# 		as you can imagine, this only unassociate the tickets related to the project and set them to nil
 	# 		note that the tickets will stay undeleted
 	has_many :tickets, dependent: :delete_all
+
+	# permissions control...
+	# ":thing" word means: i have * permissions related by the field "thing"
+	has_many :permissions, as: :thing
+	scope :viewable_by, ->(user) do 
+		# you can translate this to the following sql sentence
+		# select *
+		# from user inner join permissions on user.user_id = permissions.user_id
+		# where permissions.action = "view"
+		joins(:permissions).where(permissions: {action: "view", user_id: user.id})
+	end
 end

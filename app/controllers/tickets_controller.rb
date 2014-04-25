@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
 	before_action :set_ticket, only:[:show,:edit,:update,:destroy]
 	# note that we can say "only" in these actions or "except" these actions
 	# we'll need the "require_signin!" method later, so the best place to put it is in the "application_controller.rb" file
-	before_action :require_signin!, except: [:show, :index]
+	before_action :require_signin!
 
 	# new action
 	def new
@@ -63,10 +63,13 @@ class TicketsController < ApplicationController
 	def set_project
 		# the param "project_id" comes from the magic of rails...
 		# similar to "params[:id]" in projects controller...
-		@project = Project.find(params[:project_id])
+		# the below line isn't valid anymore, since we
+		# need to check if the user has view permissions on the project
+		# @project = Project.find(params[:project_id])
+		@project = Project.for(current_user).find(params[:project_id])
 		rescue ActiveRecord::RecordNotFound
 		flash[:alert] = "The project you were looking for could not be found."
-		redirect_to projects_path
+		redirect_to root_path
 	end
 
 	# as above, we define a set_ticket method for retrieving the ticket

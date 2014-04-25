@@ -24,6 +24,7 @@ feature "Editing tickets" do
 		# view the "spec/support/authentication_helpers.rb" to view this method
 		sign_in_as!(user)
 		define_permission!(user,:view, project)
+		define_permission!(user,"edit tickets", project)
 		visit "/"
 		click_link project.name
 		click_link ticket.title

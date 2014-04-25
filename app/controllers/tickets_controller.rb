@@ -12,6 +12,10 @@ class TicketsController < ApplicationController
 	# we need to check if the user has permission for creating a ticket
 	# see the "private" part of this class to find out the implementation
 	before_action :authorize_create!, only: [:new, :create]
+	before_action :authorize_update!, only: [:edit, :update]
+
+
+
 	# new action
 	def new
 		@ticket = Ticket.new(project_id: @project.id)
@@ -95,6 +99,15 @@ class TicketsController < ApplicationController
 		# see the "app/model/ability.rb" file
 		if !current_user.admin? && cannot?("create tickets".to_sym,@project)
 			flash[:alert] = "You cannot create tickets on this project."
+			redirect_to @project
+		end
+	end
+
+	# we'll implement this method in an analog way to the "authorize_create!" method
+	def authorize_update!
+
+		if !current_user.admin? && cannot?("edit tickets".to_sym, @project)
+			flash[:alert] = "You cannot edit tickets on this project."
 			redirect_to @project
 		end
 	end

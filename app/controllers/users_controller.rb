@@ -11,7 +11,14 @@ class UsersController < ApplicationController
 
 		if @user.save
 			flash[:notice]  = "You have signed up successfully."
+			# since the projects#index action requires the user
+			# to be signed_in, we need the new user to be logged in
+			# at the momment he has signed up successfully
+			session[:user_id] = @user.id
 			redirect_to projects_path
+
+			
+			
 		else
 			render :new
 		end

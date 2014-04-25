@@ -23,6 +23,7 @@ feature "Deleting tickets" do
 		# this method is defined in "spec/support/authentication_helpers.rb"
 		sign_in_as!(user)
 		define_permission!(user,:view, project)
+		define_permission!(user,"delete tickets".to_sym, project)
 		visit "/"
 		click_link project.name
 		click_link ticket.title

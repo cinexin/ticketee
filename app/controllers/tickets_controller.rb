@@ -9,11 +9,11 @@ class TicketsController < ApplicationController
 	# note that we can say "only" in these actions or "except" these actions
 	# we'll need the "require_signin!" method later, so the best place to put it is in the "application_controller.rb" file
 	
-	# we need to check if the user has permission for creating a ticket
+	# we need to check if the user has permission for "CUD" a ticket
 	# see the "private" part of this class to find out the implementation
 	before_action :authorize_create!, only: [:new, :create]
 	before_action :authorize_update!, only: [:edit, :update]
-
+	before_action :authorize_delete!, only: :destroy
 
 
 	# new action
@@ -111,4 +111,14 @@ class TicketsController < ApplicationController
 			redirect_to @project
 		end
 	end
+
+	# you'll have guessed that we wrote this method...
+	def authorize_delete!
+
+		if !current_user.admin? && cannot?("delete tickets".to_sym, @project)
+			flash[:alert] = "You cannot delete tickets from this project."
+			redirect_to @project
+		end
+	end
+
 end

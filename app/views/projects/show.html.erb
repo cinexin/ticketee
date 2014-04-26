@@ -19,6 +19,9 @@
 	<% end %>
 </ul>
 
-<!-- this is what we call "nested routing", view "routes.rb" file -->
-<%= link_to "New Ticket", new_project_ticket_path(@project) %>
-
+<!-- se the app/helpers/application_helper.rb to
+	see the details about this "authorized?" method -->
+<% authorized?("create tickets", @project) do %>
+	<!-- this is what we call "nested routing", view "routes.rb" file -->
+	<%= link_to "New Ticket", new_project_ticket_path(@project) %>
+<% end %>

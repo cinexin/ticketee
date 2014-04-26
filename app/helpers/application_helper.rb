@@ -15,4 +15,11 @@ module ApplicationHelper
     	block.call if current_user.try(:admin?)  
 	end
 	
+	# authorized? method
+	def authorized?(permission, thing, &block)
+		# call the block if the user has permission on the object or 
+		# if the user is an admin
+		# remember the "CanCan" gem and see the "app/models/ability.rb" for details
+		block.call if can?(permission.to_sym, thing) || current_user.try(:admin?)
+	end
 end

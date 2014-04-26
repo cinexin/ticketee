@@ -3,7 +3,7 @@
 class Ability 
 	include CanCan::Ability
 
-	# this method will define how "can?" and "cannot?" methods will act
+	# this method defines how "can?" and "cannot?" methods will act
 	def initialize(user)
 		
 		user.permissions.each do |p|

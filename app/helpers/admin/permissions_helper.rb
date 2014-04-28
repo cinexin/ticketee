@@ -4,7 +4,8 @@ module Admin::PermissionsHelper
 	# the permissions you want to display in 
 	# app/views/admin/permissions/index.html.erb
 	def permissions 
-		{"view" => "View",
+		{
+			"view" => "View",
 			"create_tickets" => "Create tickets",
 			"edit tickets" => "Edit Tickets",
 			"delete tickets" => "Delete Tickets"

@@ -1,8 +1,9 @@
 <div id="ticket">
-	<span id="author">
-		Created by <%=@ticket.user.email %>
-	</span>
-
+	<% if @ticket.user %>
+		<span id="author">
+			Created by <%=@ticket.user.email %>
+		</span>
+	<% end %>
 	<h2><%= @ticket.title %></h2>
 
 	<!-- what's that "simple_format" thing...?

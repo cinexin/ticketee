@@ -1,0 +1,58 @@
+<h2>Permissions for <%=@user.email%> </h2>
+
+<!-- this "form_tag" points to the path specified by
+	its first argument -->
+<!-- for details about the "admin_user_set_permissinons" path 
+	see the "config/routes.rb" file (search for "set_permissions" path) -->
+<%= form_tag admin_user_set_permissions_path, :method=>:put do %>
+	
+	<table id='permissions' cellspacing="0">
+		
+		<thead>
+			
+			<th>Project</th>
+			<!-- what's this "permissions" variable? see the
+				helper method defined in 
+				"app/helpers/admin/permissions_helper.rb" 
+				indeed, it's not a variable, it's a method that returns a hash! -->
+			<% permissions.each do |name, text| %>
+				<th><%= text %></th>
+			<% end %>
+		</thead>
+
+		<tbody>
+			
+			<% @projects.each do |project| %>
+
+				<tr class='<%=cycle("odd","even")%>' id='project_<%=project.id%>'>
+					<td>
+						<%= project.name %>
+					</td>
+
+					<% permissions.each do |name, text| %>
+						<td>
+							<!-- the first argument is the unique id for the checkbox
+								the second argument is the value returned to the controller, and we will use it to determine if
+								the checkbox is checked or not
+								the third argument uses the @ability object
+								to determine if the checkbox must be displayed as checked-->
+							<!-- in this case, the checkbox will render a html like this:
+								<input id="permissions_1_view"
+										name="permissions[1][view]
+										type="checkbox"
+										value="1">
+								-->
+							<%= check_box_tag "permissions[#{project.id}][#{name}]", 
+								1,
+								@ability.can?(name.to_sym, project)
+							%>
+						</td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+
+	</table>
+
+	<%= submit_tag "Update" %>
+<% end %>

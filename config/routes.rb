@@ -60,7 +60,20 @@ Ticketee::Application.routes.draw do
     # view "controllers/admin/base_controller.rb" file
     # remember: controller#action
     root :to=>"base#index"
+    
+    resources :users do
+      resources :permissions
+      # this route will only respond to "PUT" HTTP requests 
+      # and it will map it to controller#action 
+      # the name of the route will be the name after "as: "
+      # in this case: "set_permissions"
+      put "permissions", to: "permissions#set", as: "set_permissions"
+    end
+
   end
+
+  # "signout" path, similarly to the defined "set_permissions" path above ...
+  delete "/signout", to: "sessions#destroy", as: "signout"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

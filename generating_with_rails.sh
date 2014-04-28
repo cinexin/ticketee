@@ -62,3 +62,6 @@ $ bin/rails generate controller admin/users index
 $ bin/rails generate model permission user_id:integer thing_id:integer thing_type:string action:string
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare
+
+# generate the permissions controller...
+$ bin/rails generate controller admin/permissions

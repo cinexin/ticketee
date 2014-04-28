@@ -29,6 +29,9 @@
 			-->
 			<% if current_user %>
 			    Signed in as <%= current_user.email %>
+
+			    <!-- if the user is signed_in, we show him a "Signo out" link -->
+			    <%= link_to "Sign out", signout_path, method: :delete %>
 				<!-- link to admins space...-->
 				<!-- se the app/helpers/application_helper.rb for details of "admins_only" method -->
 				<% admins_only do %>

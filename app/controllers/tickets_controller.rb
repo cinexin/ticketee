@@ -89,7 +89,7 @@ class TicketsController < ApplicationController
 
 	# strong params, always strong params....
 	def ticket_params
-		params.require(:ticket).permit(:title, :description)
+		params.require(:ticket).permit(:title, :description, :asset)
 	end
 
 	def authorize_create!

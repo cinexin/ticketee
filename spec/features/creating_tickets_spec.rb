@@ -34,6 +34,7 @@ feature "Creating Tickets" do
 		end	
 	end
 
+
 	scenario "Creating a ticket without valid attributes fails" do
 		click_button "Save"
 
@@ -49,6 +50,22 @@ feature "Creating Tickets" do
 
 		expect(page).to have_content "Ticket has not been created."
 		expect(page).to have_content "Description is too short"
+	end
+
+	scenario "Creating a ticket with an attachment" do
+
+		fill_in "Title", with: "Add documentation for blink tag"
+		fill_in "Description", with: "The blink tag has a speed attribute"
+		# this method attaches the file found at the specified path to
+		# the field given in the 1st argument
+		attach_file "File", "spec/fixtures/speed.txt"
+		click_button "Save"
+
+		expect(page).to have_content ("Ticket has been created.")
+		within("#ticket .asset") do
+			expect(page).to have_content("speed.txt")
+		end
+
 	end
 
 end

@@ -65,3 +65,12 @@ $ bin/rake db:test:prepare
 
 # generate the permissions controller...
 $ bin/rails generate controller admin/permissions
+
+# generate the uploader asset...
+$ bin/rails generate uploader Asset
+
+# generate the migration to add an asset to tickets
+$ bin/rails generate migration add_asset_to_tickets asset:string
+# ...and as always...
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare

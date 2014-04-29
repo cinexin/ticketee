@@ -61,4 +61,7 @@ end
 # to manage permissions
 gem 'cancan', '~>1.6.10'
 
+# the "CarrierWave" gem brings us the functionality
+# to upload files from our web app
+gem 'carrierwave', '0.8.0'
 # note: to automatically require this gems, view the "config/application.rb" file (line 9)

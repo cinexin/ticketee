@@ -75,6 +75,8 @@ Ticketee::Application.routes.draw do
   # "signout" path, similarly to the defined "set_permissions" path above ...
   delete "/signout", to: "sessions#destroy", as: "signout"
 
+  # see the "app/controller/files_controller.rb" for details
+  resources :files
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

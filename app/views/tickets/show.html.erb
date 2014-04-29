@@ -19,7 +19,10 @@
 		<div class="assets">
 			<% @ticket.assets.each do |asset| %>
 				<p>
-					<%= link_to File.basename(asset.asset.path), asset.asset.url %>
+					<!-- asset.asset.url isn't valid anymore,
+						since we changed the default path of the
+						uploaded files (see "app/uploaders/asset_uploader.rb"), instead, we'll use the "file_path(asset)" helper -->
+					<%= link_to File.basename(asset.asset.path), file_path(asset) %>
 				</p>
 				<p>
 					<small><%= number_to_human_size(asset.asset.size) %></small>

@@ -77,3 +77,13 @@ $ bin/rake db:test:prepare
 
 # generate the "asset" model
 $ bin/rails generate model asset
+
+# generate a controller to add some protection to uploaded files
+$ bin/rails generate controller files
+
+# generate a new field in assets to store the "content type" field
+# (view "app/controller/files_controller.rb" for details)
+$ bin/rails generate migration add_content_type_to_assets content_type:string
+# ...and as usual..
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare

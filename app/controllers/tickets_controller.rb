@@ -19,6 +19,8 @@ class TicketsController < ApplicationController
 	# new action
 	def new
 		@ticket = Ticket.new(project_id: @project.id)
+		# we need to initialize some assets for the ticket...
+		3.times {@ticket.assets.build}
 	end
 
 	# create action
@@ -89,7 +91,10 @@ class TicketsController < ApplicationController
 
 	# strong params, always strong params....
 	def ticket_params
-		params.require(:ticket).permit(:title, :description, :asset)
+		# remember: a "Ticket" has_many "Assets", 
+		#and each "Asset" has an uploaded file named "asset"
+		# (see the "db/migrate/*_create_assets.rb" file for details)
+		params.require(:ticket).permit(:title, :description, assets_attributes: [:asset])
 	end
 
 	def authorize_create!

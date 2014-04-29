@@ -28,10 +28,19 @@
 		<%= f.text_area :description %>
 	</p>
 
-	<p>
-		<%= f.label :asset, "File" %><br/>
-		<%= f.file_field :asset %>
-	</p>
+	<!-- this is the way we can generate n fields for a set of attributes
+		in this case, uploaded files...-->
+	<% number = 0 %>
+	<!-- the argument for the "fields_for" form tells Rails
+		the name of the nested fields we want to iterate
+		Note that this only works for nested fields in the model
+	-->
+	<%= f.fields_for :assets do |asset| %>
+		<p>
+			<%= asset.label :asset, "File ##{number +=1 }" %>	
+			<%= asset.file_field :asset %>	
+		</p>
+	<% end %>
 
 	<%= f.submit "Save" %>
 <%end%>

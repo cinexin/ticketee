@@ -1,7 +1,9 @@
 class Ticket < ActiveRecord::Base
-	# relationships
+	 # relationships
   	belongs_to :project
   	belongs_to :user
+    has_many :assets
+    accepts_nested_attributes_for :assets
 
   	# validations
   	validates :title, presence: true
@@ -11,5 +13,5 @@ class Ticket < ActiveRecord::Base
 
   	# we need the "CarrierWave" gem to allow this line to work
   	# we'll also need an uploader (see "app/uploaders/asset_uploader.rb" file)
-  	mount_uploader :asset, AssetUploader
+  	#mount_uploader :asset, AssetUploader
 end

@@ -74,3 +74,6 @@ $ bin/rails generate migration add_asset_to_tickets asset:string
 # ...and as always...
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare
+
+# generate the "asset" model
+$ bin/rails generate model asset

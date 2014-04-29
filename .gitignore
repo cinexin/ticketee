@@ -14,3 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# uploaded files
+# see the "app/uploaders/asset_uploader.rb" for details
+public/uploads

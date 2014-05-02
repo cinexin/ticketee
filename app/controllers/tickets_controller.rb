@@ -19,8 +19,8 @@ class TicketsController < ApplicationController
 	# new action
 	def new
 		@ticket = Ticket.new(project_id: @project.id)
-		# we need to initialize some assets for the ticket...
-		3.times {@ticket.assets.build}
+		# we need to initialize an asset for the ticket...
+		@ticket.assets.build
 	end
 
 	# create action

@@ -63,5 +63,11 @@ gem 'cancan', '~>1.6.10'
 
 # the "CarrierWave" gem brings us the functionality
 # to upload files from our web app
-gem 'carrierwave', '0.8.0'
+gem 'carrierwave', '0.9.0'
 # note: to automatically require this gems, view the "config/application.rb" file (line 9)
+
+# see "spec/spec_helper.rb" for details about this gem (search for "config.use_transactional_fixtures")
+# to configure this gem, we need to create a new file at 'spec/support/database_cleaning.rb', see it for more details
+gem 'database_cleaner', '1.0.1'
+
+gem 'selenium-webdriver' , '~> 2.41.0'

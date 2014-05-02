@@ -27,7 +27,21 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  
+=begin
+    MIGUE COMMENT: What does this "use_transactional_fixtures = true" mean?
+    this means that every test begins a transaction in the database and
+    when the test ends, it makes a rollback to revert the database again
+    to a clean state, so, for instance, the data inserted in "creating_tickets_spec.rb"
+    exists purely during the execution of the spec, and will never be commited to
+    the database
+    If you're running tests that use Javascript, you must disable this option,
+    and instead of rolling back a transaction everytime, you must clean it
+    with the help of a gem called "database_cleaner" (see Gemfile)
+=end
+  
+
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of

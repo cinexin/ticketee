@@ -35,12 +35,26 @@
 		the name of the nested fields we want to iterate
 		Note that this only works for nested fields in the model
 	-->
-	<%= f.fields_for :assets do |asset| %>
-		<p>
-			<%= asset.label :asset, "File ##{number +=1 }" %>	
-			<%= asset.file_field :asset %>	
-		</p>
-	<% end %>
+	<div id = 'files'>
+		<!-- see "app/views/files/_form.html.erb" for details -->
+		<!-- when you pass the "locals" option to "render", you can set local variables that can be used in the partial-->
+		<%= render partial: "files/form", locals: {number: params[:number].to_i} %>
+		<!--
+		Some explanation about the "link_to Add another file" arguments:
+
+		 ":remote=>true" tells Rails you want we want a link that uses
+		Javascript to make a backgrouynd "asynchronous" request, the request uses the JavaScript provided by "jquery-ujs.js" (that comes with the "jquery-rails" gem), this request responds with some content, wich is dealt by ":update" and ":position" options
+
+		":update=>files" tells Rails to tell the JavaScript that handles the response that you want to insert the content from the background request into the element with the the "id" attribute "files"
+
+		":position=>after" tells that you want to insert the above commented content after any other content in the element, wich in this case means, for instance, that the second file selected will be displayed after the first inserted file
+		-->
+		<!-- link_to "Add another file", new_file_path, :remote=>true, :update=>"files", :position=>"after" %> -->
+		<!-- we replace the above "link_to" statement to this: -->
+		<!-- see "app/assets/javascripts/tickets.js.cofee" for details -->
+		<%= link_to "Add another file", 'javascript:', id: "add_another_file" %>
+	</div>
+	
 
 	<%= f.submit "Save" %>
 <%end%>

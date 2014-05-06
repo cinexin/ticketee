@@ -87,3 +87,11 @@ $ bin/rails generate migration add_content_type_to_assets content_type:string
 # ...and as usual..
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare
+
+# generate the comments model
+$ bin/rails generate model comment text:text ticket_id:integer user_id:integer
+# ...and guess what's next...
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare
+# ...and the controller...
+$ bin/rails generate controller comments

@@ -1,0 +1,9 @@
+
+<!-- the "div_for" method generates a div tag around the content in the block and also sets a class and id attribute based on the object passed in.
+In this examplpe, the div tag would be like that:
+<div id="comment_1" class="comment">
+-->
+<%= div_for(comment) do %>
+	<h4><%= comment.user %></h4>
+	<%= simple_format(comment.text) %>
+<% end %>

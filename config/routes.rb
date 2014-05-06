@@ -33,6 +33,11 @@ Ticketee::Application.routes.draw do
     resources :tickets
   end
   
+  # nested resources
+  resources :tickets do
+    resources :comments
+  end
+
   resources :users
 
   # note the format: Prefix + Verb + Uri pattern +", to:" + Controller#Action

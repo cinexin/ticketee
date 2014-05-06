@@ -38,7 +38,7 @@ class TicketsController < ApplicationController
 
 	# the show action
 	def show
-
+		@comment = @ticket.comments.build
 	end
 
 	# the edit action

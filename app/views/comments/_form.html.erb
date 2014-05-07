@@ -8,9 +8,9 @@
 		prohibited this ticket from being saved:</h2>
 
 		<ul>
-		<% @comment.errors.full_messages.each do |msg| %>
-		<li><%= msg %></li>
-		<% end %>
+			<% @comment.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
 		</ul>
 	</div>
 	<% end %>
@@ -19,5 +19,18 @@
 		<%= f.text_area :text %>
 	</p>
 
+	<!-- state selection -->
+	<p>
+		<%= f.label :state_id %>	
+		<!-- the "f.select" method takes 3 arguments:
+			- 1st: the foreign key ATTRIBUTE (not the object)
+			- 2nd: 2d array
+					1st dimension => value shown in the select box
+					2nd dimension => actual value passed to the controller
+			- 3rd: default selected value, must match with one of the values of the select box
+		-->
+		
+		<%= f.select :state_id, @states.map {|s| [s.name, s.id]},selected: @ticket.state_id %>
+	</p>
 	<%= f.submit "Create comment" %>
 <% end %>

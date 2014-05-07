@@ -39,6 +39,8 @@ class TicketsController < ApplicationController
 	# the show action
 	def show
 		@comment = @ticket.comments.build
+		# we'll use this "@states" variable to populate the selectbox
+		@states = State.all
 	end
 
 	# the edit action

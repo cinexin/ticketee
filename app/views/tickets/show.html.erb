@@ -1,9 +1,4 @@
 <div id="ticket">
-	<% if @ticket.user %>
-		<span id="author">
-			Created by <%=@ticket.user.email %>
-		</span>
-	<% end %>
 	<h2><%= @ticket.title %></h2>
 
 	<!-- what's that "simple_format" thing...?
@@ -12,6 +7,16 @@
 		the way it was intended to
 	-->
 	<%= simple_format(@ticket.description) %>
+
+	<% if @ticket.user %>
+		<span id="author">
+			Created by <%=@ticket.user.email %>
+		</span>
+	<% end %>
+
+	<!-- short way of rendering a partial -->
+	<%= render @ticket.state if @ticket.state %>	
+
 
 	<!-- this is the way we can show multiple attached files -->
 	<% if @ticket.assets.exists? %>

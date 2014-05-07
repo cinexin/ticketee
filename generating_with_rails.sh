@@ -102,3 +102,9 @@ $ bin/rails generate model state name:string color:string background:string
 # ...and...
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare
+
+# add the "previous_state" column to "comments" table
+$ bin/rails generate migration add_previous_state_id_to_comments  previous_state_id:integer
+# ...and as usual...
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare

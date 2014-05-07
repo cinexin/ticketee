@@ -6,4 +6,7 @@ In this examplpe, the div tag would be like that:
 <%= div_for(comment) do %>
 	<h4><%= comment.user %></h4>
 	<%= simple_format(comment.text) %>
+
+	<!-- view "app/helpers/tickets_helper.rb" -->
+	State: <%= state_for(comment) %>
 <% end %>

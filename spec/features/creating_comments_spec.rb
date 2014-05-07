@@ -45,8 +45,12 @@ feature "Creating comments" do
 
 		page.should have_content "Comment has been created."
 
-		within("#ticket .state") do
+		within("#ticket .states") do
 			page.should have_content "Open"
+		end
+
+		within ("#comments") do
+			page.should have_content "State: Open"
 		end
 	end
 end

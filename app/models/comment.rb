@@ -4,9 +4,13 @@ class Comment < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :ticket
 	belongs_to :state
+	# this is how we can define a relationship that Rails cannot infer from the relation name (in this case, Rails would go for "PreviousState" class, wich doesn't exists)
+	belongs_to :previous_state, :class_name=>"State"
 
 	# we need a "callback function" to set the ticket state when a coment is created
  	after_create :set_ticket_state
+ 	# the before callback function is raised before the creation of the object, but AFTER the validations
+ 	before_create :set_previous_state
 	
 	# validations
 	validates :text, :presence=>true
@@ -18,4 +22,7 @@ class Comment < ActiveRecord::Base
       self.ticket.save!
     end
 
+    def set_previous_state
+    	self.previous_state = ticket.state
+    end
 end

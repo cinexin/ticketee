@@ -112,3 +112,10 @@ $ bin/rake db:test:prepare
 # generate the states controller...
 $ bin/rails generate controller admin/states
 
+# add the "default" column to the "states" model
+$ bin/rails generate migration add_default_to_states default:boolean
+# see the "db/migrate/****_add_default_to_states.rb" for a little hack
+# see the "db/seeds.rb" file for viewing how we make the "New" state the default state
+# ...and run...
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare

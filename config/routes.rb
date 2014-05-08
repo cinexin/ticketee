@@ -78,7 +78,13 @@ Ticketee::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :states
+    resources :states do
+      member do
+        # we tell Rails that that each "state" resource has an action called "make_default"
+        # this action can be accessed through a GET request
+        get :make_default
+      end
+    end
   end
 
   # "signout" path, similarly to the defined "set_permissions" path above ...

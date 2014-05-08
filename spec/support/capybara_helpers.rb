@@ -10,6 +10,12 @@ module CapybaraHelpers
   def assert_link_for(text)
     expect(page).to(have_css("a", :text=>text), "Expected to see the #{text.inspect} link, but didn't.")    
   end  
+
+  def state_line_for(state)
+  	state = State.find_by_name!(state)
+  	"#state_#{state.id}"
+  end
+
 end
 
 # as usual, we have to register these helpers in their context...

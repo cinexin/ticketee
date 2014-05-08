@@ -1,6 +1,6 @@
 class Admin::StatesController < Admin::BaseController
 
-	before_action :set_state, only: [:show, :edit, :update, :destroy]
+	before_action :set_state, only: [:show, :edit, :update, :destroy, :make_default]
 
 	def index
 		@states = State.all
@@ -48,6 +48,15 @@ class Admin::StatesController < Admin::BaseController
 		flash[:notice] = "State has been deleted."
 		redirect_to admin_states_path
 	end
+
+	def make_default
+		# we place the logic to make a state the default into the model
+		# so see "app/models/state.rb" for details about this "default!" method
+		@state.default!
+		flash[:notice]  = "#{@state.name} is now the default state."
+		redirect_to admin_states_path
+	end
+
 
 	private 
 

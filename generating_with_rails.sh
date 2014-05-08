@@ -108,3 +108,7 @@ $ bin/rails generate migration add_previous_state_id_to_comments  previous_state
 # ...and as usual...
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare
+
+# generate the states controller...
+$ bin/rails generate controller admin/states
+

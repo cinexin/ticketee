@@ -18,7 +18,6 @@
 	<!-- this will render the "app/views/_state.html.erb" partial -->
 	<%= render @ticket.state if @ticket.state %>	
 
-
 	<!-- this is the way we can show multiple attached files -->
 	<% if @ticket.assets.exists? %>
 		<h3>Attached File</h3>

@@ -77,6 +77,10 @@ Ticketee::Application.routes.draw do
 
   end
 
+  namespace :admin do
+    resources :states
+  end
+
   # "signout" path, similarly to the defined "set_permissions" path above ...
   delete "/signout", to: "sessions#destroy", as: "signout"
 

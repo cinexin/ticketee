@@ -9,6 +9,7 @@ feature "Assigning permissions " do
 
 	before do
 		
+		FactoryGirl.create(:state, :name=>"Open")
 		sign_in_as!(admin)
 
 		click_link "Admin"
@@ -81,6 +82,30 @@ feature "Assigning permissions " do
 		click_link "Delete Ticket"
 
 		expect(page).to have_content "Ticket has been deleted."
+
+	end
+
+	scenario "Changing states for a ticket" do
+
+		check_permission_box "view", project
+		# view "app/helpers/admin/permissions_helper.rb"
+		check_permission_box "change_states", project
+
+		click_button "Update"
+		click_link "Sign out"
+
+		sign_in_as!(user)
+		click_link project.name
+		click_link ticket.title
+
+		fill_in "Text", :with => "Opening this ticket"
+		select "Open", :from => "State"
+		click_button "Create comment"
+
+		page.should have_content "Comment has been created."
+		within("#ticket .states") do
+			page.should have_content "Open"
+		end
 
 	end
 end

@@ -43,6 +43,12 @@ class Admin::StatesController < Admin::BaseController
 		redirect_to admin_state_path(@state)
 	end
 
+	def destroy
+		@state.destroy
+		flash[:notice] = "State has been deleted."
+		redirect_to admin_states_path
+	end
+
 	private 
 
 	def state_params

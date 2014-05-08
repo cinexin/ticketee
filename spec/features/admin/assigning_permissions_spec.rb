@@ -31,8 +31,8 @@ feature "Assigning permissions " do
 		expect(page).to have_content(project.name)
 	end
 
-	scenario "Creating tickets for a project" do
-
+	scenario "Creating tickets for a project"do
+		# set_speed(:slow)
 		check_permission_box "view", project
 		check_permission_box "create_tickets", project
 		click_button "Update"
@@ -87,6 +87,7 @@ feature "Assigning permissions " do
 
 	scenario "Changing states for a ticket" do
 
+		
 		check_permission_box "view", project
 		# view "app/helpers/admin/permissions_helper.rb"
 		check_permission_box "change_states", project
@@ -98,13 +99,15 @@ feature "Assigning permissions " do
 		click_link project.name
 		click_link ticket.title
 
+
 		fill_in "Text", :with => "Opening this ticket"
 		select "Open", :from => "State"
 		click_button "Create comment"
 
-		page.should have_content "Comment has been created."
-		within("#ticket .states") do
-			page.should have_content "Open"
+		expect(page).to have_content "Comment has been created."
+
+		within('.states') do
+			expect(page).to have_content "Open"
 		end
 
 	end

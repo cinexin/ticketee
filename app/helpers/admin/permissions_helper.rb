@@ -6,10 +6,10 @@ module Admin::PermissionsHelper
 	def permissions 
 		{
 			"view" => "View",
-			"create_tickets" => "Create tickets",
+			"create tickets" => "Create tickets",
 			"edit tickets" => "Edit Tickets",
 			"delete tickets" => "Delete Tickets",
-			"change states" => "Change States"
+			"change states" => "Change States",
 		}
 	end
 end

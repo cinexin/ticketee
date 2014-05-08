@@ -20,6 +20,7 @@ FactoryGirl.define do
 
 		  # admin user
 		factory :admin_user do
+			name "Admin user"
 			admin true
 		end
 	end

@@ -1,0 +1,12 @@
+  .state_new {
+    background: #85FF00;
+    color: white;
+  }
+  .state_open {
+    background: #00CFFD;
+    color: white;
+  }
+  .state_closed {
+    background: black;
+    color: white;
+  }

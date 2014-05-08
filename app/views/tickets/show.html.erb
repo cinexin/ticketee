@@ -51,9 +51,10 @@
 		<!-- this is the lightest way to query...-->
 		<% if @ticket.comments.exists? %>
 			<!-- when you call "select" on an array, you can pass
-				it to a block wich it will evaluate on all objects 
-				inside that array and return any element which makes
-				the block evaluate to anything that's not nil or false-->
+			it to a block wich it will evaluate on all objects 
+			inside that array and return any element which makes
+			the block evaluate to anything that's not nil or falsw
+			-->
 			<!-- the persisted? method checks if an object is persisted in the database -->
 			<!-- by using "render", Rails will render a partial for every single element in this collection and will try to locate tha partial using the first object's class name.
 			In this case, since the class is "Comment", Rails will try to find it in: "app/views/comments/_comment.html.erb" -->

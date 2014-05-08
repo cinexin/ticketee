@@ -6,6 +6,12 @@ class CommentsController < ApplicationController
 
 
 	def create
+
+		# if the user has not permission to change the state of the ticket, we supress the "state_id" from the params...
+		if cannot?(:"change states", @ticket.project)
+			params[:comment].delete(:state_id)
+		end
+
 		@comment = @ticket.comments.build(comment_params)
 		@comment.user = current_user
 
@@ -18,6 +24,8 @@ class CommentsController < ApplicationController
 			render :template => "tickets/show" 
 		end
 	end
+
+
 
 	private
 

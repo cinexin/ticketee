@@ -34,5 +34,8 @@
 			<%= f.select :state_id, @states.map {|s| [s.name, s.id]},selected: @ticket.state_id %>
 		</p>
 	<% end %>
+
+	<%= render "tags/form", f: f %>
+	
 	<%= f.submit "Create comment" %>
 <% end %>

@@ -53,7 +53,7 @@ feature "Creating Tickets" do
 	end
 
 	# this "js: true" statement means that we're gonna need some JavaScript...
-	# it will run "WebDriver" (see GemFile)
+	# it will run "WebDriver" (see Gemfile)
 	scenario "Creating a ticket with an attachment", js: true do
 
 		fill_in "Title", with: "Add documentation for blink tag"
@@ -72,6 +72,21 @@ feature "Creating Tickets" do
 			expect(page).to have_content("spin.txt")
 		end
 
+	end
+
+	scenario "Creating a ticket with tags" do
+
+		fill_in "Title", :with=>"Non-standars compliance"
+		fill_in "Description", :with=>"My pages are MINE!"
+		fill_in "Tags", :with=>"browser visual"
+
+		click_button "Save"
+		page.should have_content "Ticket has been created."
+
+		within ("#ticket #tags") do
+			page.should have_content "browser"
+			page.should have_content "visual"
+		end	
 	end
 
 end

@@ -8,6 +8,10 @@
 	-->
 	<%= simple_format(@ticket.description) %>
 
+	<div id="tags">
+		<!-- see the partial "app/views/tags/_tags.html.erb" for details -->
+		<%= render @ticket.tags %>
+	</div>
 	<% if @ticket.user %>
 		<span id="author">
 			Created by <%=@ticket.user.email %>

@@ -109,7 +109,7 @@ $ bin/rails generate migration add_previous_state_id_to_comments  previous_state
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare
 
-# generate the states controller...
+# generate the "states" controller...
 $ bin/rails generate controller admin/states
 
 # add the "default" column to the "states" model
@@ -117,5 +117,14 @@ $ bin/rails generate migration add_default_to_states default:boolean
 # see the "db/migrate/****_add_default_to_states.rb" for a little hack
 # see the "db/seeds.rb" file for viewing how we make the "New" state the default state
 # ...and run...
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare
+
+
+# generate the "tags" controller
+# note that if we don't want to generate the default "timestamps" with the model we can do it passing --timestamps false argument
+$ bin/rails generate model tag name:string --timestamps false
+# before running the migration, see the "db/migrate/*****_create_tags.rb" to see how we can generate the relationship table
+# ...and then...
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare

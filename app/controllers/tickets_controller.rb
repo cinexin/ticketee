@@ -96,7 +96,7 @@ class TicketsController < ApplicationController
 		# remember: a "Ticket" has_many "Assets", 
 		#and each "Asset" has an uploaded file named "asset"
 		# (see the "db/migrate/*_create_assets.rb" file for details)
-		params.require(:ticket).permit(:title, :description, assets_attributes: [:asset])
+		params.require(:ticket).permit(:title, :description, :tag_names, assets_attributes: [:asset])
 	end
 
 	def authorize_create!

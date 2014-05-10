@@ -36,6 +36,12 @@ Ticketee::Application.routes.draw do
   # nested resources
   resources :tickets do
     resources :comments
+    # route for removing a tag (adding a "delete" route)
+    resources :tags do
+      member do
+        delete :remove
+      end
+    end
   end
 
   resources :users

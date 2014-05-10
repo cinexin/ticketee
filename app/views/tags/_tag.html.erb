@@ -1,4 +1,14 @@
 <!-- view "app/view/tickets/show.html.erb" -->
 <span class="tag">
+	
+	<!-- if the user has permission to do it, 
+		we show the link to remove a tag -->
+	<% if (can?(:tag, @ticket.project) || current_user.admin?) %>
+
+		<!-- we pass the "remote: true" option to tell Rails
+			that it must do an asynchronous request -->
+		<%= link_to "x", remove_ticket_tag_path(@ticket, tag) , :method => :delete, :remote => true , :id=>"delete-#{tag.name.parameterize}"%>
+	<% end %>
+
 	<%= tag.name %>
 </span>

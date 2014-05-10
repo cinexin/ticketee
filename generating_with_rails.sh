@@ -121,10 +121,13 @@ $ bin/rake db:migrate
 $ bin/rake db:test:prepare
 
 
-# generate the "tags" controller
+# generate the "tags" model
 # note that if we don't want to generate the default "timestamps" with the model we can do it passing --timestamps false argument
 $ bin/rails generate model tag name:string --timestamps false
 # before running the migration, see the "db/migrate/*****_create_tags.rb" to see how we can generate the relationship table
 # ...and then...
 $ bin/rake db:migrate
 $ bin/rake db:test:prepare
+
+# generate the controller for the "tag" model
+$ bin/rails generate controller tags

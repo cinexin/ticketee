@@ -1,0 +1,4 @@
+/* this jQuery code removes the tag from the page 
+	see "app/controllers/tags_controller.rb" for details */
+
+$('#delete-<%=@tag.name.parameterize%>').parent().remove();

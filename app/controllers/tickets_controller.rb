@@ -25,6 +25,12 @@ class TicketsController < ApplicationController
 
 	# create action
 	def create
+
+		# "sanitize" parameters...
+		if cannot?(:tag, @project)
+			params[:ticket].delete(:tag_names)
+		end
+
 		@ticket = @project.tickets.build(ticket_params)
 		@ticket.user = current_user
 		if @ticket.save

@@ -7,11 +7,8 @@ class CommentsController < ApplicationController
 
 	def create
 
-		# if the user has not permission to change the state of the ticket, we supress the "state_id" from the params...
-		if cannot?(:"change states", @ticket.project)
-			params[:comment].delete(:state_id)
-		end
-
+		sanitize_parameters!
+		
 		@comment = @ticket.comments.build(comment_params)
 		@comment.user = current_user
 
@@ -37,4 +34,17 @@ class CommentsController < ApplicationController
 		params.require(:comment).permit(:text, :state_id, :tag_names)
 	end
 
+	# we'll remove the forbidden parameters here :-)
+	def sanitize_parameters!
+		# if the user has not permission to change the state of the ticket, we supress the "state_id" from the params...
+		if cannot?(:"change states", @ticket.project)
+			params[:comment].delete(:state_id)
+		end
+
+		# if the user has not permission to tag, we supress the "tag_names" from the params...
+		if cannot?(:tag, @ticket.project)
+			params[:comment].delete(:tag_names)
+		end	
+
+	end
 end

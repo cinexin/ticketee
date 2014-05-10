@@ -71,3 +71,4 @@ gem 'carrierwave', '0.9.0'
 gem 'database_cleaner', '1.0.1'
 
 gem 'selenium-webdriver' , '~> 2.41.0'
+

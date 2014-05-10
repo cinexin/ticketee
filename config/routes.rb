@@ -30,7 +30,14 @@ Ticketee::Application.routes.draw do
   # to review these routes (and more you can configure further)
   # execute this command in your console: "bin/rake routes"
   resources :projects do
-    resources :tickets
+    resources :tickets do
+      # if we want to act on a collection of a resource (like searching),
+      # we'll do this way:
+      collection do
+        # see ("app/views/projects/show.html.erb")
+        get :search
+      end
+    end
   end
   
   # nested resources

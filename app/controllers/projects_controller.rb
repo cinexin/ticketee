@@ -46,6 +46,7 @@ class ProjectsController < ApplicationController
 	def show
 		# this line isn't necessary anymore (view "set_project" method at the end)
 		# @project = Project.find(params[:id])
+		@tickets = @project.tickets
 	end
 
 	# the "edit" action for the projects

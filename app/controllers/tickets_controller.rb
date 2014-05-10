@@ -75,6 +75,12 @@ class TicketsController < ApplicationController
 
 
 
+	# the search -not default- action
+	def search
+		@tickets = @project.tickets.search(params[:search])
+		render "projects/show"
+	end
+
 	private
 	# this method will being executed before every action
 	def set_project

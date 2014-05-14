@@ -105,6 +105,16 @@ Ticketee::Application.routes.draw do
 
   # see the "app/controller/files_controller.rb" for details
   resources :files
+
+
+  # this is the way we'll declare the routes for our API !!
+  namespace :api do
+    namespace :v1 do
+      resources :projects
+    end
+  end 
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

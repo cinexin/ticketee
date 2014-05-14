@@ -1,14 +1,6 @@
 class Ticket < ActiveRecord::Base
 
-  # NOTE!! code from gems or plugins should go above any code for the models,
-  # as it may modifiy the behaviour of the code that follows it
-  # in this case, we're delegating some operations to the "searcher" gem...
-  #searcher do
-    # the "from" option tells "searcher" gem what association this label should be searched
-    # the "field" option tells "searcher" gem on what field where performing the lookup 
-    # this will allow us to make the "search" call in the TicketsController
-  #  label :tag, :from => :tags, :field=> :name
-  #end
+
 
 	 # relationships
   	belongs_to :project
@@ -21,6 +13,10 @@ class Ticket < ActiveRecord::Base
     # NOTE: the table by default will be the combination, in alphabetical order, of the two tables you want to join
     #       the fields will be, as expected, ticket_id and tag_id
     has_and_belongs_to_many :tags
+
+    # similarly as above, we have a "many to many" relation in the "ticket_watchers" table
+    has_and_belongs_to_many :watchers, join_table: "ticket_watchers",
+                                     class_name: "User"
 
 
   	# validations
@@ -40,6 +36,9 @@ class Ticket < ActiveRecord::Base
     attr_accessor :tag_names
 
     before_create :associate_tags
+
+    # we register the creator as a watcher of the ticket
+    after_create :creator_watches_me
 
     def self.search(query)
       terms = {}
@@ -72,6 +71,13 @@ class Ticket < ActiveRecord::Base
           # the "find_or_create_by" is a dynamic finder of "ActiveRecord" objects
           self.tags << Tag.find_or_create_by(name:name)
         end
+      end
+    end
+
+
+    def creator_watches_me
+      if user
+        self.watchers << user unless self.watchers.include?(user)
       end
     end
 end

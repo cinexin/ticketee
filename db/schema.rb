@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509094415) do
+ActiveRecord::Schema.define(version: 20140513154143) do
 
   create_table "assets", force: true do |t|
     t.string   "asset"
@@ -63,6 +63,11 @@ ActiveRecord::Schema.define(version: 20140509094415) do
     t.integer "ticket_id"
   end
 
+  create_table "ticket_watchers", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "ticket_id"
+  end
+
   create_table "tickets", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -84,6 +89,7 @@ ActiveRecord::Schema.define(version: 20140509094415) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",           default: false
+    t.string   "token"
   end
 
 end

@@ -131,3 +131,24 @@ $ bin/rake db:test:prepare
 
 # generate the controller for the "tag" model
 $ bin/rails generate controller tags
+
+# generate the "ticket_watchers" table 
+# users are watchers of many tickets
+# tickets have many watchers
+$ bin/rails generate model ticket_watchers user_id:integer ticket_id:integer
+# before running the migration, see the "db/migrate/*****_create_ticket_watchers.rb" for little previous hacks
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare
+
+# adding a token to "user" model
+$ bin/rails generate migration add_token_to_users authentication_token:string
+# ...and...
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare
+
+# ooooopss...i made a mistake with the name of the "token" column
+$ bin/rails g migration FixColumnName
+# see the "db/migrate/***********_fix_column_name,rb" for details
+# ...and make the migration...
+$ bin/rake db:migrate
+$ bin/rake db:test:prepare

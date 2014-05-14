@@ -55,6 +55,7 @@ end
 group :test do
 	gem 'capybara', "2.2.1"
 	gem 'factory_girl_rails', '~>4.2.1'
+	gem 'email_spec', '~> 1.5.0'
 end
 
 # the "cancan" gem brings us a set of helpers
@@ -72,3 +73,5 @@ gem 'database_cleaner', '1.0.1'
 
 gem 'selenium-webdriver' , '~> 2.41.0'
 
+
+gem 'email_spec', '~> 1.5.0'

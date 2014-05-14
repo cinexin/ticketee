@@ -1,7 +1,7 @@
 class Api::V1::BaseController < ActionController::Base
 
 	# this sets to any inheriting controller to respond to JSON requests
-	respond_to :json
+	respond_to :json, :xml
 
 	# before concerns
 	before_action :authenticate_user

@@ -19,6 +19,7 @@ describe "api/v1/projects", :type=>:api do
 
 		let(:url) {"/api/v1/projects"}
 		
+		# for JSON requests
 		it "json" do
 			# this "get" method is provided by Rack::Test::Methods module
 			get "#{url}.json", :token => token
@@ -38,6 +39,16 @@ describe "api/v1/projects", :type=>:api do
 			projects.any? do |p|
 				p["name"] == "Access denied"
 			end.should be_false
+		end
+
+		# for XML requests
+		it "XML" do
+			get "#{url}.xml", :token=>token
+			response.body.should eql(Project.for(user).to_xml)
+
+			# Nokogiri is a gem used to parse XML and HTML documents
+			projects = Nokogiri::XML(response.body)
+			projects.css("project name").text.should eql(project.name)
 		end
 	end
 end

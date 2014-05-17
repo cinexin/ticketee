@@ -51,4 +51,33 @@ describe "api/v1/projects", :type=>:api do
 			projects.css("project name").text.should eql(project.name)
 		end
 	end
+
+	context "Creating a project" do
+
+		let(:url) {"/api/v1/projects"}
+
+		# successful creation via JSON request
+		it "successful JSON" do
+			post "#{url}.json", :token=>token, :project=>{:name=>"Inspector"}
+
+			project = Project.find_by_name!("Inspector")
+			route = "/api/v1/projects/#{project.id}"
+			
+			# 210 is the http status that means "correct creation"
+			response.status.should eql(201)
+			response.headers["Location"].should eql(route)
+			response.body.should eql(project.to_json)
+		end
+
+=begin
+		it "unsuccessful JSON"  do
+			post "#{url}.json", :token=>token, :project=>{:description=>"blabla"}
+
+			response.status.should eql(201)
+			errors = {"errors" => {"name" => ["can't be blank"]}}.to_json
+			response.should eql(errors)
+		end 
+=end
+
+	end
 end

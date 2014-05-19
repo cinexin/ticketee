@@ -1,0 +1,67 @@
+$primary-font-color: #E0E0E0 ;
+$error-font-color: #DC143C;
+
+a {
+	display:inline-block;
+	text-decoration: none;
+	color:$primary-font-color;
+	padding: .8em;
+}
+
+a:visited {
+	color: $primary-font-color ;
+}
+
+a:hover {
+	color: black;
+}
+
+body {
+	background: url(background.png);
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #303030 ;
+}
+
+div {
+	background-color: white;
+	text-align: center;
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 1em;
+	border-radius: .5em;
+	background-color: $primary-font-color ;
+	font-size: .8em;
+}
+
+
+
+div#error {
+	color:$error-font-color;
+	
+}
+
+h1 {
+	margin-left:auto;
+	margin-right:auto;
+	width: 30%;
+	text-align: center;
+	border-radius: .0em;
+	color:$primary-font-color ;
+	font-weight: 400;
+}
+
+h2 {
+	color: $primary-font-color;
+	font-weight: 300;
+}
+
+input {
+	border-radius: .7em;
+}
+
+
+
+nav {
+	color: $primary-font-color;
+}

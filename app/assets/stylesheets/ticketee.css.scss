@@ -1,5 +1,10 @@
 $primary-font-color: #E0E0E0 ;
 $error-font-color: #DC143C;
+$hover-font-color: #B0C4DE;
+$background-color-in-div: #E0E0E0;
+$font-color-in-div: #2F4F4F;
+$font-size-in-div:.8em;
+
 
 a {
 	display:inline-block;
@@ -13,32 +18,49 @@ a:visited {
 }
 
 a:hover {
-	color: black;
+	color: $hover-font-color;
 }
 
 body {
 	background: url(background.png);
+	background-repeat:repeat;
 	font-family: Tahoma, Geneva, sans-serif;
 	color: #303030 ;
 }
 
+
+
+div label {
+	color: $font-color-in-div;
+	font-size: $font-size-in-div ;
+}
+
+
+div#error, div#error_explanation, div#error_explanation h2 {
+	color:$error-font-color;
+}
+
+div#error_explanation {
+	margin-bottom: 2em;
+}
+
 div {
-	background-color: white;
+	background-color: $background-color-in-div;
 	text-align: center;
 	width:50%;
 	margin-left:auto;
 	margin-right:auto;
 	padding: 1em;
 	border-radius: .5em;
-	background-color: $primary-font-color ;
 	font-size: .8em;
 }
 
 
-
-div#error {
-	color:$error-font-color;
-	
+.field_with_errors {
+	display: inline-block;
+	margin: 0em;
+	padding: 0em;
+	font-size: $font-size-in-div + .2em;
 }
 
 h1 {
@@ -60,7 +82,9 @@ input {
 	border-radius: .7em;
 }
 
-
+label {
+	color: $primary-font-color;
+}
 
 nav {
 	color: $primary-font-color;

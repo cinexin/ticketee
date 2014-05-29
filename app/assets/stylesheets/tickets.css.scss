@@ -1,3 +1,19 @@
 // Place all the styles related to the tickets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "partials/variables";
+
+a#add_another_file {
+	color: $font-color-in-div;
+}
+
+a#add_another_file:hover {
+	color: $hover-font-color-in-div;
+}
+
+textarea {
+	width: 30em;
+	height: 5em;
+	border-radius: .7em;
+}
+

@@ -3,17 +3,37 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "partials/variables";
 
-a#add_another_file {
+#edit_ticket_link, #delete_ticket_link {
 	color: $font-color-in-div;
 }
 
-a#add_another_file:hover {
+#edit_ticket_link:hover,#delete_ticket_link:hover {
+	color:$hover-font-color-in-div;
+}
+
+div a {
+	color: $font-color-in-div;
+}
+
+div a:hover {
 	color: $hover-font-color-in-div;
 }
 
+div.assets a {
+	color: $font-color-in-div;
+	
+}
+
+div.assets a:hover {
+	color: $hover-font-color-in-div;
+	
+}
+
 textarea {
-	width: 30em;
+	width: 20em;
 	height: 5em;
 	border-radius: .7em;
+	margin-left: auto;
+	margin-right: auto;
 }
 

@@ -12,15 +12,16 @@ class Admin::PermissionsController < Admin::BaseController
 
 		@user.permissions.clear
 
-		params[:permissions].each do |id, permissions|
-			project = Project.find(id)
+		if params[:permissions]
+			params[:permissions].each do |id, permissions|
+				project = Project.find(id)
 
-			permissions.each do |permission, checked|
+				permissions.each do |permission, checked|
 
-				Permission.create!(user: @user, thing: project, action: permission)
+					Permission.create!(user: @user, thing: project, action: permission)
+				end
 			end
 		end
-
 		flash[:notice] = "Permissions updated."
 
 		redirect_to admin_user_permissions_path(@user)

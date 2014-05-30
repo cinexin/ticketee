@@ -11,23 +11,14 @@
 	color:$hover-font-color-in-div;
 }
 
-div a {
+div a, div.assets a {
 	color: $font-color-in-div;
 }
 
-div a:hover {
+div a:hover, div.assets a:hover {
 	color: $hover-font-color-in-div;
 }
 
-div.assets a {
-	color: $font-color-in-div;
-	
-}
-
-div.assets a:hover {
-	color: $hover-font-color-in-div;
-	
-}
 
 textarea {
 	width: 20em;

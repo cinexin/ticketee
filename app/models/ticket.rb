@@ -36,6 +36,7 @@ class Ticket < ActiveRecord::Base
     attr_accessor :tag_names
 
     before_create :associate_tags
+    after_update :sanitize_assets
 
     # we register the creator as a watcher of the ticket
     after_create :creator_watches_me
@@ -78,6 +79,16 @@ class Ticket < ActiveRecord::Base
     def creator_watches_me
       if user
         self.watchers << user unless self.watchers.include?(user)
+      end
+    end
+
+
+    # it seems every time we update the ticket, an empty asset is added to the collection :-(
+    def sanitize_assets
+      assets.each do |asset|
+        if !asset.asset.url
+          assets.delete(asset)
+        end
       end
     end
 end

@@ -1,6 +1,3 @@
-// Place all the styles related to the admin/permissions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 @import "partials/variables";
 
 
@@ -9,9 +6,12 @@ div#permissions_div {
 	background-color: $background-color-in-div;
 }
 
+
 table#permissions {
 
 }
+
+
 
 th {
 	padding-bottom: .8em;
@@ -30,9 +30,11 @@ tbody tr:hover {
 	background-color:$hover-font-color;
 }
 
+
 tr.even {
 	/* nah */
 }
+
 
 tr.odd {
 	/* nah */

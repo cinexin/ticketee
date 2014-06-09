@@ -24,9 +24,8 @@
 
 	<!-- this is the way we can show multiple attached files -->
 	<% if @ticket.assets.exists? %>
-		<h3>Attached File</h3>
+		<h3>Attached Files</h3>
 		<div class="assets">
-			Number of assets: <%= @ticket.assets.count %>
 			<% @ticket.assets.each do |asset| %>
 				<p>
 					<!-- asset.asset.url isn't valid anymore,
